@@ -1,0 +1,36 @@
+<div ng-controller="userController as UC">
+	<div ng-controller="pollController as PC">
+		<h4>Enter the question and options here.</h4>
+		<br>
+
+		<h1>Question: <span ng-bind="PC.pollErrors.question"></span>
+		<input type="text" ng-model="PC.pollInfo.question"></h1>
+
+<p>Option 1:<span ng-bind="PC.pollErrors.option1"></span>
+<input type="text" ng-model="PC.pollInfo.option1"> </p>
+
+			<p>Option 2: <span ng-bind="PC.pollErrors.option2"></span>
+			<input type="text" ng-model="PC.pollInfo.option2"></p>
+
+			<p>Option 3: <span ng-bind="PC.pollErrors.option3"></span>
+			<input type="text" ng-model="PC.pollInfo.option3"></p>
+
+		<p>Option 4: <span ng-bind="PC.pollErrors.option4"></span>
+		<input type="text" ng-model="PC.pollInfo.option4"></p>
+
+
+			<div ng-if="PC.errors.length">
+				<h5>
+					<span><strong>Please complete the form before submitting it.</strong></span>
+					<div >$$$The question must be at least 8 characters long.$$$</div>
+					<div>$$$ Each option must be at least 3 characters long.$$$</div>
+				</h5>
+			</div>
+
+			<button ng-click="PC.create(UC.user.first_name)" >Create Poll</button>
+
+			<a href="#!/dashboard">Cancel</a>
+			<li><a ng-click='UC.logout()'  href="#!/" ng-show='loggedIn'><strong>Logout</strong></a></li>
+
+	</div>
+</div>

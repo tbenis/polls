@@ -1,0 +1,27 @@
+<div ng-controller="voteController as VC">
+	<br>
+	<a href="#!/dashboard">Go to Polls</a>
+	<h2 ng-bind="VC.survey.poll"></h2>
+	<h5>Click the Vote button to choose one.</h5>
+	<table border>
+		<thead>
+			<tr>
+				<th>Option</th>
+				<th>Vote Count</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="option in VC.survey._options">
+			<tr>
+				<td ng-bind="option.option"></td>
+				<td ng-bind="option.like"></td>
+				<td>
+					<button ng-click="VC.increaseVote(option._id)">Vote!</button>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<li><a ng-click='userController.logout()' href="#!/" ng-show='loggedIn'><strong>Logout</strong></a></li>
+
+</div>

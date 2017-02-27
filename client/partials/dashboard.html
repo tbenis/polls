@@ -1,0 +1,37 @@
+
+<div ng-controller="userController as UC">
+		<li><span  ng-show='loggedIn'>Welcome, {{currentusername}}!</span</li> |
+
+		<a href="#!/createPoll">Create New Poll</a>
+
+	<div ng-controller="pollController as PC">
+		<h3>Current Polls</h3>
+		<span>Search: <input type="text" ng-model="filterName"></span>
+		<br>
+		<br>
+		<table border>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Question</th>
+					<th>Date Posted</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="survey in PC.surveys | filter: filterName | orderBy: '-createdAt'">
+				<tr>
+					<td ng-bind="survey._user"></td>
+					<td>
+						<a href="#!/vote/{{survey._id}}">{{survey.poll}}?</a>
+					</td>
+					<td ng-bind="survey.createdAt | date"></td>
+					<td>
+						<button ng-if="survey._user == UC.user.first_name" ng-click="PC.delete(survey._id)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<li><a ng-click='logout()'  href="#!/" ng-show='loggedIn'><strong>Logout</strong></a></li>
+
+	</div>
+</div>
